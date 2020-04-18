@@ -33,5 +33,25 @@
 >
 >    - 对于对象或数组，可以使用constructor属性，该属性值引用的是原来构造该对象的函数。对于undefined和null特殊值就不能使用constructor属性，因为JS解释器会报出错误。
 >
+>    - 使用toString()方法检测把对象转换为字符串，返回的字符串形式如下：
+>
+>      ```javascript
+>      [object class]
+>      /*
+>      	object表示对象的通用类型，class表示对象的内部类型，内部类型的名称与该对象的构造函数名对应。
+>      	用户自定义对象的class值为Object
+>      	
+>      	要获取对象的class值唯一方法是必须调用Object对象定义的默认toString()方法，所以不能直接调用对象的该方法。要调用Object对象定义的默认toString()方法，可以先调用Object.prototype.toString对象默认toString()函数，再调用该函数的apply()方法在想要检测的对象上执行。
+>       */
+>      ```
+>
+>      ```javascript
+>      var d = new Date()
+>      var m = Object.prototype.toString
+>      console.log(m.apply(d));//[object Date]
+>      ```
+>
+>      
+>
 > 
 

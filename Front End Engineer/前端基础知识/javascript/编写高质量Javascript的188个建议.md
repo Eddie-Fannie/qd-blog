@@ -59,7 +59,7 @@
 >    > console.log(parseInt(010)) //8
 >    > ```
 >    >
->    > 
+>    > **parseInt可以接受一个基数作为参数，这样parseInt("09",10)结果为9** 
 >
 > 
 

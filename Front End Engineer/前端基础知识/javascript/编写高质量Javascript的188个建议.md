@@ -63,3 +63,12 @@
 >
 > 
 
+### 正确处理Javascript特殊值
+
+1. 正确使用NaN和Infinity
+
+   ```javascript
+   typeof NaN === 'number' // true
+   ```
+
+2. 使用`isFinite` 函数能够检测NaN，正负无穷大。如果有限数值，或者可以转换为有限数值，那么将返回true。如果只是NaN，正负无穷大的数值，则返回false。不过该函数会把运算转换为一个数字。

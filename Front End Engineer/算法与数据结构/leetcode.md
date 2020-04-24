@@ -309,7 +309,7 @@ letterCombinations("789")
 >      因此，当 n = 0 时，其格雷编码序列为 [0]。
 > ```
 
-> 思路：
+> 思路：找出镜像对称规律
 >
 > ```bash
 > 输入：1   输入：2    输入：3
@@ -388,5 +388,76 @@ letterCombinations("789")
 > };
 > ```
 >
-> 
+> **位运算**
+>
+> ```javascript
+> /**
+>  * @param {number} n
+>  * @return {number[]}
+>  */
+> var grayCode = function(n) {
+>     let ans = [];
+>     let head = 1;
+>     ans.push(0);
+>     for(let i = 0; i < n;i ++) {
+>         let len = ans.length - 1;
+>         for(let j = len; j >=0; j--) {
+>             ans.push(head + ans[j])
+>         }
+>         // 位运算: b1等于b1乘以2的1次方
+>         head <<=1;
+>     }
+>     return ans;
+> };
+> ```
+
+## 459.重复的子字符串
+
+> 给定一个非空的字符串，判断它是否可以由它的一个子串重复多次构成。给定的字符串只含有小写英文字母，并且长度不超过10000。
+>
+> **示例1**
+>
+> 输入："abab" 输出：True 解释：可由字符串“ab"重复两次构成
+>
+> **代码**
+>
+> 1. 利用正则表达式
+>
+>    ```javascript
+>    var repeatedSubstringPattern = function(s) {
+>        let reg = /^(\w+)\1+$/ // \1 等于()中匹配的内容
+>        return reg.test(s)
+>    };
+>    ```
+>
+> 2. 利用`repeat` ，周期串s
+>
+>    ```javascript
+>    var repeatedSubstringPattern = function(s) {
+>        let len = s.length;
+>        let i = 1;
+>        while(i <= len / 2) {
+>            if (len % i == 0 && s.slice(0, i).repeat(len/i) == s) {
+>                return true
+>            }
+>            i++;
+>        }
+>        return false
+>    };
+>    ```
+>
+> 3. 借用字符串进行巧妙解法
+>
+>    > - 将原字符串给出拷贝一遍组成新字符串
+>    > - 掐掉头尾留中间
+>    > - 如果还包含原字符串，则满足题意
+>
+>    
+>
+>    ```javascript
+>    var repeatedSubstringPattern = function(s) {
+>        let s1 = (s + s).slice(1, -1);
+>        return s1.indexOf(s) != -1;
+>    };
+>    ```
 

@@ -122,7 +122,63 @@ alert(pattern.source); // \[bc\]at
 
 - 特殊字符
 
-  1. \w匹配大小写字母和数字和下划线，等同于[A-Za-z0-9_]
+  1. \w匹配大小写字母和数字和下划线，等同于[A-Za-z0-9_]；\W匹配任意非数字字母下划线
+
+  2. \d等同于0-9;\D匹配任意非数字
+
+  3. .匹配任意单个字符，换行和结束符除外，{}表示匹配多少个字符(**n{x}匹配包含连续x个n的字符串**)
+
+     ```javascript
+     var str = '1+0.2&2=1.4'
+     console.log(str.match(/.{2}/g)) // 这里匹配两个字符，结果：[ '1+', '0.', '2&', '2=', '1.' ]
+     ```
+
+  4. \s匹配空白字符
+
+  5. \b匹配单词边界，连续的数字字母或下划线组成的字符串会认为是一个单词; \B匹配非单词边界
+
+     ```javascript
+     var str = 'adobe(2016) ps6.4'
+     console.log(str.match(/\b(\w+)/g)) // [ 'adobe', '2016', 'ps6', '4' ]
+     
+     var str = 'adobe(2016) ps6.4'
+     console.log(str.match(/\B(\w+)/g)) // [ 'dobe', '016', 's6' ]
+     ```
+
+- 量词说明
+
+  1. n*匹配包含0个或者多个n的字符串
+
+     ```javascript
+     var str = 'aa3b aa12bb'
+     console.log(str.match(/a*\d+/g)) // [ 'aa3', 'aa12' ]
+     
+     var str = 'aad3b aa12bb'
+     console.log(str.match(/a*\d+/g)) // [ '3', 'aa12' ]
+     ```
+
+  2. n?匹配0个或者1个字符串
+
+     ```javascript
+     var str = 'aad3b aa12bb'
+     console.log(str.match(/a?\d+/g)) // [ '3', 'a12' ]
+     ```
+
+  3. n{x,y}匹配包含连续x个且最多连续y个n的字符串
+
+     ```javascript
+     var str = 'aa3b aa12bb'
+     console.log(str.match(/a{2,3}\d+/g)) // [ 'aa3', 'aa12' ]
+     ```
+
+  4. n{x,}匹配包含至少连续x个n的字符串
+
+     ```javascript
+     var str = 'aad3b aa12bb'
+     console.log(str.match(/a{2,}\d+/g)) //[ 'aa12' ]
+     ```
+
+     
 
 
 

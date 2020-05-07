@@ -49,3 +49,52 @@ git-flow version
 
 4. 当我们项目发布后，日后的维护工作我们需要开一个独立的分支`Hotfix` 这是唯一一种可以以`master`为父分支的分支。当维护工作做好后就要把代码合并到master和dev分支，并给master分支打上新版本标签。
 
+## 具体开发实例
+
+1. 执行`git-flow init`初始化一下项目
+
+   > 利用一个反馈模块项目来初始化项目结构，可以看到如下内容，均按回车进行下一步。这个时候项目的分支默认到开发分支下，可以输入`git branch`查看当前分支
+
+   
+
+   ![img](https://mmbiz.qpic.cn/mmbiz_png/09OicMgzsTbGYSCMwzRC1sXKtbSQedAHmsRrW2HQN51oAOI6n677v1yM9ak6gQmicMjv1kJ710TvoneD0tKF9f1g/0?wx_fmt=png)
+
+2. 自动基于开发分支下新建特性分支，执行`git flow feature start test`,test为特性分支名字，创建成功会出现下面这些信息。
+
+   ![img](https://mmbiz.qpic.cn/mmbiz_png/09OicMgzsTbGYSCMwzRC1sXKtbSQedAHmKSku4bD0Y8ibibSkQg4k47mPAdwm3RoLUd8pqsq8znl5VaoKiaGGWBoTA/0?wx_fmt=png)
+
+3. 完成特性分支功能开发之后需要`git add` `git commit -m ''` 然后再`git flow feature finish test`结束特性分支。
+
+   > 平时开发项目的时候，大家可能同时开发一个特性分支，所以需要将特性分支推送到远程仓库。
+   >
+   > 使用`git flow feature publish test` ，记得代码要合并到开发分支dev。
+
+   ![img](https://mmbiz.qpic.cn/mmbiz_png/09OicMgzsTbGYSCMwzRC1sXKtbSQedAHm5jVoaJ7McWHBBaNS8QgAat2Rd8JibkjVAlicfAsrtPAzQbqAfcCmS01g/0?wx_fmt=png)
+
+4. 创建release分支来管理分布的版本
+
+   ```bash
+   ➜  feedback-all git:(develop) git flow release start v1.0
+   切换到一个新分支 'release/v1.0'
+   
+   Summary of actions:
+   - A new branch 'release/v1.0' was created, based on 'develop'
+   - You are now on branch 'release/v1.0'
+   
+   Follow-up actions:
+   - Bump the version number now!
+   - Start committing last-minute fixes in preparing your release
+   - When done, run:
+   
+        git flow release finish 'v1.0'
+   ```
+
+5. Hotfix分支：
+
+   ```bash
+   git flow hotfix start v.1.0 // 创建
+   git flow hotfix finish v.1.0 //完成（结束）
+   ```
+
+   
+

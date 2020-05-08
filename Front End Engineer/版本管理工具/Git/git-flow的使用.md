@@ -89,6 +89,15 @@ git-flow version
         git flow release finish 'v1.0'
    ```
 
+   > release使用版本号来命名分支，这样当我们完成release分支时，git-flow会自动提交一些标记。
+   >
+   > `git flow release finish v1.0`这个命令会进行下面一系列：
+   >
+   > 1. 拉取远程仓库来保持代码的最新状态。
+   > 2. release分支内容会合并到master和develop两个分支中去。
+   > 3. 会被标记上tag---这里是v1.0
+   > 4. release分支删除，并且回到开发分支。
+
 5. Hotfix分支：
 
    ```bash
@@ -97,4 +106,3 @@ git-flow version
    ```
 
    
-

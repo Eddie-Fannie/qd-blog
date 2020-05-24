@@ -1,0 +1,1 @@
+1. 工程上线进行依赖安装，可以通过`npm install--production`过滤掉`devDependencies`中的冗余模块，从而加快安装和发布的速度。
